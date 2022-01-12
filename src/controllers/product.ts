@@ -18,7 +18,7 @@ class ProductController extends BaseController {
   @UseBefore(LoginMiddleware)
   @Get('/list')
   async getList (@Req() request: Request): Promise<resultType> {
-
+    const a = 1
     const { pageNo = '0', pageSize = '10' } = request.query as any
     const currentPageNo = parseInt(pageNo)
     const currentPageSize = parseInt(pageSize)
