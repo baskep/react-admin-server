@@ -23,16 +23,17 @@ class LoginController extends BaseController {
       const detail = await LoginModel.getUser(username)
 
       const auth = _.get(detail, 'auth')
+      const mobile = _.get(detail, 'mobile')
       const isMatch = _.get(detail, 'password') === password
 
       if (isMatch) {
         const secretOrPrivateKey = TOKEN.TOKEN_KEY
         const token = JWT.sign({
-          name: username
+          username: username,
         }, secretOrPrivateKey, {
-          expiresIn: '2days'
+          expiresIn: '2days',
         })
-        return this.showResult({ token, auth }, '登录成功')
+        return this.showResult({ token, auth, username, mobile }, '登录成功')
       }
       return this.showError({}, ERRORS.LOGIN_ERROR)
     } catch (e) {

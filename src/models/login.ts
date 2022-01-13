@@ -3,7 +3,7 @@ import Knex from '../library/mysql'
 
 type userReturnType = {
   id: string,
-  name: string,
+  username: string,
   password: string,
   auth: number
 }
@@ -14,7 +14,7 @@ class LoginModel extends Base {
   static async getUser(userName: string): Promise<userReturnType> {
     const detail = await Knex(this.TABLE_NAME)
       .select('*')
-      .where('name', userName)
+      .where('username', userName)
       .first()
       .catch(this.dbSelectErrorHandler)
     return detail
