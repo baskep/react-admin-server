@@ -17,7 +17,7 @@ type resultType = {
 class LoginController extends BaseController {
   // 登录
   @Post('/login')
-  async login(@Req() request: Request): Promise < resultType > {
+  async login(@Req() request: Request): Promise <resultType> {
     try {
       const { username, password } = request.body
       const detail = await LoginModel.getUser(username)

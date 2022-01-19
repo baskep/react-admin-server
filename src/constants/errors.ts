@@ -92,6 +92,11 @@ const INTERNAL_ERROR = {
   msg: '服务器内部错误',
 }
 
+const UPDATE_NO_DATA_ERROR = {
+  status: 500,
+  msg: '未修改成功',
+}
+
 const UNKNOWN_ERROR = {
   status: 500,
   msg: '服务器出现未知错误',
@@ -134,6 +139,7 @@ export default {
   INVALID_REQUEST,
   TOO_MANY_REQUESTS,
   INTERNAL_ERROR,
+  UPDATE_NO_DATA_ERROR,
   UNKNOWN_ERROR,
   REDIS_CONNECT,
   REDIS_DISCONNECT,

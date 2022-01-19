@@ -36,7 +36,11 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': [
       'off',
     ],
-    '@typescript-eslint/explicit-module-boundary-types': ['error', { 'allowArgumentsExplicitlyTypedAsAny': true }],
+    '@typescript-eslint/explicit-module-boundary-types': [
+      'off',
+      'error', 
+      { 'allowArgumentsExplicitlyTypedAsAny': true },
+    ],
     'no-useless-call': 'off',
     'id-length': 'off',
     'camelcase': 'off',

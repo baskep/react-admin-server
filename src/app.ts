@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 
 import { createKoaServer } from 'routing-controllers'
-import { ProductController, LoginController } from './controllers'
+import { ProductController, LoginController, UserController } from './controllers'
 import config from './config'
 
 
@@ -12,6 +12,7 @@ const init = () => {
     controllers: [
       LoginController,
       ProductController,
+      UserController,
     ],
   })
   app.listen(config.port)
