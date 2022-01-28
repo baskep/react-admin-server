@@ -1,4 +1,4 @@
-import { JsonController, Post, Req, UseBefore } from 'routing-controllers'
+import { Controller, Get, Post, Req, UseBefore } from 'routing-controllers'
 import { Request } from 'koa'
 import _ from 'lodash'
 
@@ -13,13 +13,13 @@ type resultType = {
   status: number
 }
 
-@JsonController()
-class ProductController extends BaseController {
-  @UseBefore(LoginMiddleware)
+@UseBefore(LoginMiddleware)
+@Controller()
+class UserController extends BaseController {
   @Post('/user/info')
-  async updateUserInfo(@Req() request: Request): Promise <resultType> {
+  async updateUserInfo(@Req() req: Request): Promise <resultType> {
     try {
-      const { username, mobile, password } = request.body
+      const { username, mobile, password } = req.body
       const res = await UserModel.updateUserInfo(username, password, Number(mobile))
       if (res === 1) {
         return this.showResult({}, '修改账号信息成功')
@@ -30,6 +30,40 @@ class ProductController extends BaseController {
     }
   }
 
+  @Get('/user/list')
+  async getUserList(@Req() req: Request): Promise <resultType> {
+    try {
+      const { pageNum, pageSize, username, mobile, status } = req.query as any
+      const { result } = await UserModel.getUserList(
+        Number(pageNum),
+        Number(pageSize),
+        Number(mobile), 
+        Number(status),
+        username, 
+      )
+      const { total } = await UserModel.getUserList(
+        Number(1),
+        Number(1000),
+        Number(mobile), 
+        Number(status),
+        username, 
+      )
+      return this.showResult({ result, total }, '操作成功')
+    } catch (e) {
+      return this.showError({}, ERRORS.INTERNAL_ERROR)
+    }
+  }
+
+  @Post('/user/status')
+  async setUserStatus(@Req() req: Request): Promise <resultType> {
+    try { 
+      const { status, selectedRowKeys} = req.body as any
+      await UserModel.setUserStatus(status, selectedRowKeys)
+      return this.showResult({}, '操作成功')
+    } catch (e) {
+      return this.showError({}, ERRORS.INTERNAL_ERROR)
+    }
+  }
 }
 
-export default ProductController
+export default UserController

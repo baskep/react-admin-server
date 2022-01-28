@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 
 import { createKoaServer } from 'routing-controllers'
-import { ProductController, LoginController, UserController } from './controllers'
+import { LoginController, UserController } from './controllers'
 import config from './config'
 
 
@@ -11,7 +11,6 @@ const init = () => {
     routePrefix: '/api',
     controllers: [
       LoginController,
-      ProductController,
       UserController,
     ],
   })

@@ -11,10 +11,10 @@ type userReturnType = {
 class LoginModel extends Base {
   static TABLE_NAME = 'user'
 
-  static async getUser(userName: string): Promise<userReturnType> {
+  static async getUser(username: string): Promise<userReturnType> {
     const detail = await Knex(this.TABLE_NAME)
       .select('*')
-      .where('username', userName)
+      .where('username', username)
       .first()
       .catch(this.dbSelectErrorHandler)
     return detail
