@@ -3,10 +3,10 @@ import path from 'path'
 const currentConfig = {
   dev: {
     db: {
-      host: '101.43.29.210',
+      host: '',
       port: 3306,
       username: 'root',
-      password: 'irk7Ido_ema',
+      password: '',
       database: 'test',
       dialect: 'mysql',
       define: {
