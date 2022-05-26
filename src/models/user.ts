@@ -66,7 +66,7 @@ class UserModel extends Base {
     const offset = (pageNum - 1) * pageSize
     const realOffset = offset > 0 ? offset : 0
     const query =  Knex.queryBuilder()
-      .select('id', 'username', 'mobile', 'status')
+      .select('id', 'username', 'mobile', 'status', 'auth')
       .from(this.TABLE_NAME)
 
     if (username) {
