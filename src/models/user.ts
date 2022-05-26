@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 import Base from './base'
 import Knex from '../library/mysql'
 class UserModel extends Base {
@@ -17,12 +19,15 @@ class UserModel extends Base {
     username: string,
     password: string, 
   ) {
+    const id = nanoid() 
     const insertId = await Knex.queryBuilder()
       .insert({
+        id: id,
         mobile,
         username,
         password,
-        status: 0,
+        status: 1,
+        auth: 0,
       })
       .into(this.TABLE_NAME)
       .catch(this.dbSelectErrorHandler)
@@ -99,7 +104,7 @@ class UserModel extends Base {
       .catch(this.dbSelectErrorHandler)
     return count
   }
-  
+
 }
 
 export default UserModel

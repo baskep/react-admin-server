@@ -20,6 +20,10 @@ class UserController extends BaseController {
   async addUserInfo(@Req() req: Request): Promise <resultType> {
     try {
       const { username, mobile, password } = req.body
+      const isExist = await UserModel.queryOne(username)
+      if (isExist) {
+        return this.showError({}, ERRORS.NAME_ISEXIST)
+      }
       const insertId = await UserModel.addUserInfo(Number(mobile), username, password)
       if (!insertId) {
         return this.showError({}, ERRORS.ADD_USER_ERROR)
