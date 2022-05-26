@@ -92,6 +92,16 @@ const INTERNAL_ERROR = {
   msg: '服务器内部错误',
 }
 
+const NAME_ISEXIST = {
+  status: 500,
+  msg: '用户名重复',
+}
+
+const ADD_USER_ERROR = {
+  status: 500,
+  msg: '新增账号失败',
+}
+
 const UPDATE_NO_DATA_ERROR = {
   status: 500,
   msg: '未修改成功',
@@ -139,6 +149,8 @@ export default {
   INVALID_REQUEST,
   TOO_MANY_REQUESTS,
   INTERNAL_ERROR,
+  NAME_ISEXIST,
+  ADD_USER_ERROR,
   UPDATE_NO_DATA_ERROR,
   UNKNOWN_ERROR,
   REDIS_CONNECT,

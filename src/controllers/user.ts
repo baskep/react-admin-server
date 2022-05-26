@@ -16,11 +16,31 @@ type resultType = {
 @UseBefore(LoginMiddleware)
 @Controller()
 class UserController extends BaseController {
+  @Post('/user/create')
+  async addUserInfo(@Req() req: Request): Promise <resultType> {
+    try {
+      const { username, mobile, password } = req.body
+      const insertId = await UserModel.addUserInfo(Number(mobile), username, password)
+      if (!insertId) {
+        return this.showError({}, ERRORS.ADD_USER_ERROR)
+      }
+      return this.showResult({}, '新增账号成功')
+    } catch (e) {
+      return this.showError({}, ERRORS.INTERNAL_ERROR)
+    }
+  }
+
   @Post('/user/info')
   async updateUserInfo(@Req() req: Request): Promise <resultType> {
     try {
-      const { username, mobile, password } = req.body
-      const res = await UserModel.updateUserInfo(username, password, Number(mobile))
+      const { id, username, mobile, password, isNameChange } = req.body
+      if (isNameChange) {
+        const isExist = await UserModel.queryOne(username)
+        if (isExist) {
+          return this.showError({}, ERRORS.NAME_ISEXIST)
+        }
+      }
+      const res = await UserModel.updateUserInfo(id, Number(mobile), username, password)
       if (res === 1) {
         return this.showResult({}, '修改账号信息成功')
       }

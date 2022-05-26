@@ -22,6 +22,7 @@ class LoginController extends BaseController {
       const { username, password } = req.body
       const detail = await LoginModel.getUser(username)
 
+      const id = _.get(detail, 'id')
       const auth = _.get(detail, 'auth')
       const mobile = _.get(detail, 'mobile')
       const isMatch = _.get(detail, 'password') === password
@@ -33,7 +34,7 @@ class LoginController extends BaseController {
         }, secretOrPrivateKey, {
           expiresIn: '2days',
         })
-        return this.showResult({ token, auth, username, mobile }, '登录成功')
+        return this.showResult({ id,token, auth, username, mobile }, '登录成功')
       }
       return this.showError({}, ERRORS.LOGIN_ERROR)
     } catch (e) {
