@@ -10,7 +10,8 @@ class UserModel extends Base {
     if (username) {
       query.where('username', username)
     }
-    const detail = await query.select('*').first().catch(this.dbSelectErrorHandler)
+    const detail = await query.select('*').first()
+      .catch(this.dbSelectErrorHandler)
     return detail
   }
 
@@ -18,9 +19,9 @@ class UserModel extends Base {
     mobile: number,
     auth: number,
     username: string,
-    password: string, 
+    password: string,
   ) {
-    const id = nanoid() 
+    const id = nanoid()
     const insertId = await Knex.queryBuilder()
       .insert({
         id: id.replace(/_/g, ''),
@@ -41,7 +42,7 @@ class UserModel extends Base {
     mobile: number,
     auth: number,
     username: string,
-    password?: string, 
+    password?: string,
   ) {
     let updateObject = {
       username,
@@ -49,7 +50,7 @@ class UserModel extends Base {
       auth,
     }
     if (password) {
-      updateObject = Object.assign(updateObject, {password})
+      updateObject = Object.assign(updateObject, { password })
     }
     const count = await Knex.queryBuilder()
       .update(updateObject)
@@ -64,11 +65,11 @@ class UserModel extends Base {
     pageSize: number,
     mobile?: number,
     status?: number,
-    username?: string, 
+    username?: string,
   ) {
     const offset = (pageNum - 1) * pageSize
     const realOffset = offset > 0 ? offset : 0
-    const query =  Knex.queryBuilder()
+    const query = Knex.queryBuilder()
       .select('id', 'username', 'mobile', 'status', 'auth')
       .from(this.TABLE_NAME)
 
@@ -83,14 +84,14 @@ class UserModel extends Base {
     if (status || status === 0) {
       query.where('status', status)
     }
-    
+
     const result = await query.limit(pageSize)
       .offset(realOffset)
       .catch(this.dbSelectErrorHandler)
 
     const total = result.length
 
-    return { result, total } 
+    return { result, total }
   }
 
   static async setUserStatus (

@@ -59,16 +59,16 @@ class UserController extends BaseController {
       const { result } = await UserModel.getUserList(
         Number(pageNum),
         Number(pageSize),
-        Number(mobile), 
+        Number(mobile),
         Number(status),
-        username, 
+        username,
       )
       const { total } = await UserModel.getUserList(
         1,
         1000,
-        Number(mobile), 
+        Number(mobile),
         Number(status),
-        username, 
+        username,
       )
       return this.showResult({ result, total }, '操作成功')
     } catch (e) {
@@ -78,8 +78,8 @@ class UserController extends BaseController {
 
   @Post('/user/status')
   async setUserStatus(@Req() req: Request): Promise <resultType> {
-    try { 
-      const { status, selectedRowKeys} = req.body as any
+    try {
+      const { status, selectedRowKeys } = req.body as any
       await UserModel.setUserStatus(status, selectedRowKeys)
       return this.showResult({}, '操作成功')
     } catch (e) {

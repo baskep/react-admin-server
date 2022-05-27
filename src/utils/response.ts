@@ -2,7 +2,7 @@ import { ERRORS } from '../constants'
 
 const toResponse = ( error: any) => {
   return {
-    data:  {},
+    data: {},
     ...error,
   }
 }

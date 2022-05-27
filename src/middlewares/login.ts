@@ -4,9 +4,9 @@ import { ERRORS, TOKEN } from '../constants'
 import { logger, responseUtil } from '../utils'
 
 export default class Login implements KoaMiddlewareInterface {
-  async use (ctx: any, next: (err?: any) => Promise<any>): Promise<any> {
+  async use (ctx: any, next: () => Promise<any>): Promise<any> {
     try {
-      const customAuth =  ctx.request.header['authorization'] || ''
+      const customAuth = ctx.request.header['authorization'] || ''
       await JWT.verify(customAuth, TOKEN.TOKEN_KEY)
       await next()
     } catch (error) {

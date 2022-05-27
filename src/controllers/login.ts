@@ -36,7 +36,7 @@ class LoginController extends BaseController {
           }, secretOrPrivateKey, {
             expiresIn: '2days',
           })
-          return this.showResult({ id,token, auth, username, mobile }, '登录成功')
+          return this.showResult({ id, token, auth, username, mobile }, '登录成功')
         }
         return this.showError({}, ERRORS.LOGIN_ERROR)
       }

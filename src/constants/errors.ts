@@ -51,7 +51,6 @@ const AUTH_TIMEOUT = {
   msg: '登录过时',
 }
 
-
 const UNKNOWN_ENDPOINT = {
   status: 404,
   msg: '没有找到相应的请求',

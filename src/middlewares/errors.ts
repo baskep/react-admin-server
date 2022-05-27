@@ -5,7 +5,7 @@ import { logger, responseUtil } from '../utils'
 
 @Middleware({ type: 'before' })
 export default class ErrorMiddleware implements KoaMiddlewareInterface {
-  async use (ctx: any, next: (err?: any) => Promise<any>): Promise<any> {
+  async use (ctx: any, next: () => Promise<any>): Promise<any> {
     try {
       await next()
     } catch (error) {

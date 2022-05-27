@@ -4,7 +4,6 @@ import { createKoaServer } from 'routing-controllers'
 import { LoginController, UserController } from './controllers'
 import config from './config'
 
-
 const init = () => {
   const app = createKoaServer({
     cors: true,
@@ -16,7 +15,6 @@ const init = () => {
   })
   app.listen(config.port)
 }
-
 
 // function connectRedis (): void {
 //   const redisOption = cacheUtil.getKey('redis')
