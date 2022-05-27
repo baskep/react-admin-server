@@ -3,11 +3,11 @@ class Base {
   static TABLE_COLUMN: Array<string> = []
 
   // 默认数据库插入错误处理逻辑
-  static dbInsertErrorHandler (e: Error): [] {
+  static dbInsertErrorHandler (e: Error): string {
     const message = e.message
     // eslint-disable-next-line no-console
     console.error('insert 失败', message)
-    return []
+    return ''
   }
 
   // 默认数据库错误处理逻辑

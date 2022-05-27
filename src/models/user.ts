@@ -16,21 +16,22 @@ class UserModel extends Base {
 
   static async addUserInfo (
     mobile: number,
+    auth: number,
     username: string,
     password: string, 
   ) {
     const id = nanoid() 
     const insertId = await Knex.queryBuilder()
       .insert({
-        id: id,
+        id: id.replace(/_/g, ''),
         mobile,
         username,
         password,
+        auth,
         status: 1,
-        auth: 0,
       })
       .into(this.TABLE_NAME)
-      .catch(this.dbSelectErrorHandler)
+      .catch(this.dbInsertErrorHandler)
 
     return insertId
   }
@@ -38,12 +39,14 @@ class UserModel extends Base {
   static async updateUserInfo (
     id: string,
     mobile: number,
+    auth: number,
     username: string,
     password?: string, 
   ) {
     let updateObject = {
       username,
       mobile,
+      auth,
     }
     if (password) {
       updateObject = Object.assign(updateObject, {password})
@@ -52,7 +55,7 @@ class UserModel extends Base {
       .update(updateObject)
       .from(this.TABLE_NAME)
       .where('id', id)
-      .catch(this.dbSelectErrorHandler)
+      .catch(this.dbUpdateErrorHandler)
     return count
   }
 
@@ -101,7 +104,7 @@ class UserModel extends Base {
       })
       .from(this.TABLE_NAME)
       .where('id', 'in', selectedRowKeys)
-      .catch(this.dbSelectErrorHandler)
+      .catch(this.dbUpdateErrorHandler)
     return count
   }
 

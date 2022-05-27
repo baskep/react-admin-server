@@ -99,7 +99,7 @@ const NAME_ISEXIST = {
 
 const ADD_USER_ERROR = {
   status: 500,
-  msg: '新增账号失败',
+  msg: '新增账号失败, 请稍后再试',
 }
 
 const UPDATE_NO_DATA_ERROR = {
