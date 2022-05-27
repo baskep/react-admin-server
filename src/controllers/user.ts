@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Req, UseBefore } from 'routing-controllers'
 import { Request } from 'koa'
-import _ from 'lodash'
-
 import BaseController from './base'
 import { LoginMiddleware } from '../middlewares'
 import { UserModel } from '../models'
