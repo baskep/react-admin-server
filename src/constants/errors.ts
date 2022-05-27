@@ -36,6 +36,11 @@ const NOT_MODIFIED = {
 }
 
 // 客户端请求错误
+const AUTH_INVALID_USER = {
+  status: 401,
+  msg: '无效的用户',
+}
+
 const AUTH_REQUIRED = {
   status: 403,
   msg: '获取登录信息错误',
@@ -45,6 +50,7 @@ const AUTH_TIMEOUT = {
   status: 403,
   msg: '登录过时',
 }
+
 
 const UNKNOWN_ENDPOINT = {
   status: 404,
@@ -140,6 +146,7 @@ export default {
   NOT_MODIFIED,
   AUTH_REQUIRED,
   AUTH_TIMEOUT,
+  AUTH_INVALID_USER,
   UNKNOWN_ENDPOINT,
   UNKNOWN_RESOURCE,
   CONFLICT,
