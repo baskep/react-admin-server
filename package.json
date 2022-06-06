@@ -14,9 +14,6 @@
     "@types/koa-bodyparser": "^4.3.5",
     "@types/koa-router": "^7.4.4",
     "@types/lodash": "^4.14.178",
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
-    "eslint": "^8.6.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.7",
     "nodemon": "^2.0.15"
@@ -49,7 +46,6 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint --fix",
       "git add"
     ]
   }

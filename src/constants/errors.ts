@@ -42,7 +42,7 @@ const AUTH_INVALID_USER = {
 }
 
 const AUTH_REQUIRED = {
-  status: 403,
+  status: 402,
   msg: '获取登录信息错误',
 }
 
